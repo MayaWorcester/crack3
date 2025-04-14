@@ -96,7 +96,7 @@ char (*loadFile2D(char *filename, int *size))[COLS]
 
 // Search the array for the target string.
 // Return the found string or NULL if not found.
-char * substringSearchAA(char *target, char **lines, int size)
+char * substringSearchAA(char *target, char **arr, int size)
 {
 	int found = 0;
 	char *str;
@@ -104,7 +104,7 @@ char * substringSearchAA(char *target, char **lines, int size)
 	// Loop through the array
 	for (int i = 0; i < size; i++)
 	{
-		str = lines[i];
+		str = arr[i];
 
 		// If the target substring is found in a line, break the for-loop
 		if (strstr(str, target) != NULL)
@@ -115,6 +115,36 @@ char * substringSearchAA(char *target, char **lines, int size)
 	}
 	
 	// If substring was found, return the substring
+	if (found == 1)
+	{
+		return str;
+	}
+	// otherwise return NULL
+	else
+	{
+		return NULL;
+	}
+}
+
+char * stringSearchAA(char *target, char **arr, int size)
+{
+	int found = 0;
+	char *str;
+
+	// Loop through the array
+	for (int i = 0; i < size; i++)
+	{
+		str = arr[i];
+
+		// If the target substring is found in a line, break the for-loop
+		if (strcmp(str, target) == 0)
+		{
+			found = 1;
+			break;
+		}
+	}
+	
+	// If string was found, return the substring
 	if (found == 1)
 	{
 		return str;

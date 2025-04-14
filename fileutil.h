@@ -12,12 +12,13 @@ char (*loadFile2D(char *filename, int *size))[COLS];
 
 // Search the dictionary for the target string
 // Return the found string or NULL if not found.
-char * substringSearchAA(char *target, char ** arr, int size);
+char * substringSearchAA(char *target, char **arr, int size);
 
 char * substringSearch2D(char *target, char (*arr)[COLS], int size);
 
+char * stringSearchAA(char *target, char **arr, int size);
 
 // Free the memory used by the array
-void freeAA(char ** arr, int size);
+void freeAA(char **arr, int size);
 
 void free2D(char (*arr)[COLS]);
