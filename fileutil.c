@@ -4,15 +4,6 @@
 
 #include "fileutil.h"
 
-// DIRECTIONS
-// Choose whether you are doing the 2D array or
-// the array of arrays.
-// For the 2D array,
-//    implement loadFile2D, substringSearch2D, and free2D.
-// For the array of arrays, 
-//    implement loadFileAA, substringSearchAA, and freeAA.
-
-
 // Load the text file from the given filename.
 // Return a pointer to the array of strings.
 // Sets the value of size to be the number of valid
@@ -30,7 +21,6 @@ char ** loadFileAA(char *filename, int *size)
 	int capacity = 100; // Initial capacity value
 	int arrSize = 0;
 
-	// TODO:
 	// Allocate memory for an array of strings (arr).
 	char ** arr = malloc(capacity * sizeof(char *));
 	char buffer[1000];
@@ -126,6 +116,8 @@ char * substringSearchAA(char *target, char **arr, int size)
 	}
 }
 
+// Search the array for the target string (linear search).
+// Return the found string or NULL if not found.
 char * stringSearchAA(char *target, char **arr, int size)
 {
 	int found = 0;
@@ -136,7 +128,7 @@ char * stringSearchAA(char *target, char **arr, int size)
 	{
 		str = arr[i];
 
-		// If the target substring is found in a line, break the for-loop
+		// If the target string is found in the array, break the for-loop
 		if (strcmp(str, target) == 0)
 		{
 			found = 1;
@@ -144,12 +136,60 @@ char * stringSearchAA(char *target, char **arr, int size)
 		}
 	}
 	
-	// If string was found, return the substring
+	// If target was found, return the string
 	if (found == 1)
 	{
 		return str;
 	}
-	// otherwise return NULL
+	// Otherwise return NULL
+	else
+	{
+		return NULL;
+	}
+}
+
+// Search the array for the target string (binary search).
+// Return the found string or NULL if not found.
+char * binaryStringSearchAA(char *target, char **arr, int size)
+{
+	int found = 0;
+	char *str;
+	int first = 0;
+	int last = size - 1;
+
+	// Begin binary search
+	while (first <= last)
+	{	
+		// Calculate the middle element of the array
+		int mid = (first + last) / 2;
+		str = arr[mid];
+
+		// Break the while-loop if the target is found
+		if (strcmp(str, target) == 0)
+		{
+			found = 1;
+			break;
+		}
+
+		// Ignore left half of the array if the str is less than the target
+		else if (strcmp(str, target) < 0)
+		{
+			first = mid + 1;
+		}
+
+		// Ignore right half of the array if the str is greater than the target
+		else
+		{
+			last = mid - 1;
+		}
+	}
+	
+	// If target was found, return the string
+	if (found == 1)
+	{
+		return str;
+	}
+	// Otherwise return NULL
 	else
 	{
 		return NULL;

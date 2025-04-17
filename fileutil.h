@@ -18,6 +18,8 @@ char * substringSearch2D(char *target, char (*arr)[COLS], int size);
 
 char * stringSearchAA(char *target, char **arr, int size);
 
+char * binaryStringSearchAA(char *target, char **arr, int size);
+
 // Free the memory used by the array
 void freeAA(char **arr, int size);
 
